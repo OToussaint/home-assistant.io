@@ -37,7 +37,7 @@ sensor:
     entity_id: light.my_lamp
     state: "on"
     type: time
-    start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+    start: "{{ today_at() }}"
     end: "{{ now() }}"
 ```
 
@@ -138,7 +138,7 @@ Here are some examples of periods you could work with, and what to write in your
 {% raw %}
 
 ```yaml
-    start: "{{ now().replace(hour=0, minute=0, second=0, microsecond=0) }}"
+    start: "{{ today_at() }}"
     end: "{{ now() }}"
 ```
 
@@ -149,7 +149,7 @@ Here are some examples of periods you could work with, and what to write in your
 {% raw %}
 
 ```yaml
-    end: "{{ now().replace(hour=0, minute=0, second=0, microsecond=0) }}"
+    end: "{{ today_at() }}"
     duration:
       hours: 24
 ```
@@ -161,7 +161,7 @@ Here are some examples of periods you could work with, and what to write in your
 {% raw %}
 
 ```yaml
-    start: "{{ now().replace(hour=6, minute=0, second=0, microsecond=0) }}"
+    start: "{{ today_at('06:00:00') }}"
     duration:
       hours: 5
 ```
@@ -175,7 +175,7 @@ Here, last Monday is _today_ as a timestamp, minus 86400 times the current weekd
 {% raw %}
 
 ```yaml
-    start: "{{ as_timestamp( now().replace(hour=0, minute=0, second=0, microsecond=0) ) - now().weekday() * 86400 }}"
+    start: "{{ as_timestamp( today_at() ) - now().weekday() * 86400 }}"
     end: "{{ now() }}"
 ```
 
@@ -208,7 +208,7 @@ Here, last Monday is _today_ as a timestamp, minus 86400 times the current weekd
 {% raw %}
 
 ```yaml
-    end: "{{ (now().replace(minute=0, second=0, microsecond=0) + timedelta(hours=8)).replace(hour=16) }}"
+    end: "{{ (today_at() + timedelta(hours=8)).replace(hour=16) }}"
     duration:
         hours: 24
 ```
@@ -220,7 +220,7 @@ Here, last Monday is _today_ as a timestamp, minus 86400 times the current weekd
 {% raw %}
 
 ```yaml
-    end: "{{ now().replace(hour=0, minute=0, second=0, microsecond=0) }}"
+    end: "{{ today_at() }}"
     duration:
       days: 30
 ```
